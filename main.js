@@ -4,8 +4,6 @@ let ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-
-
 let birdy = new Image();
 birdy.src = "images/boob2.png"
 let pipe1 =[];
@@ -16,7 +14,7 @@ function TopPole(x) {
     this.y = 0;
     this.dx = 5;
     this.width = 50;
-    this.height = Math.floor(Math.random() * 200) + 200;
+    this.height = Math.floor(Math.random() * 200) + 100;
     this.draw = () => {
         ctx.fillStyle = '#5DCCFE';
         ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -33,7 +31,7 @@ function BottomPole (x){
     this.y = 900;
     this.dx = 5;
     this.width = 50;
-    this.height = Math.floor(Math.random() * -200) - 200;
+    this.height = Math.floor(Math.random() * -200)  -100;
     this.draw = () => {
         ctx.fillStyle = '#5DCCFE';
         ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -41,64 +39,83 @@ function BottomPole (x){
     this.update = () => {
         this.x -= this.dx;
         this.draw();
-    }
-    
+    } 
 }
 
 function Booby (){
-    this.x = 100;
-    this.y= 200;
-    this.dy = 6;
-    this.dy2 = 0;
+    this.x = 400;
+    this.y = 200;
+    this.gravity = 0.5;
+    this.lift = -12;
+    this.speed = 5;
+
     this.draw = () =>{
-        ctx.drawImage(birdy, this.x, this.y);
+        ctx.drawImage(birdy, this.x, this.y, 100, 100);
     }
+
     this.update = () => {
         this.draw();
-        this.y += this.dy;
-        if(this.y < innerHeight){
-            this.dy+= 1;
-            this.y += this.dy;
-        }else if(this.y > innerHeight){
-            this.y = innerHeight - 150;
+        this.y += this.speed
+        if(this.y > 600){
+            this.y = 600;
         }
     }
-    this.lift = () =>{
-        this.y -= this.dy * 4;
-        this.update();
-        console.log(`still here`);
+    this.moveUp = () =>{
+        this.lift -= this.gravity;
+        this.y += this.speed * this.lift;
+        
+        console.log(this.y);
     }
    
 
 }
-
-pipe1.push(new TopPole(1000));
-pipe2.push(new BottomPole(1000));
-let booby = new Booby();
-
-
-const birdFall = () => { 
-    requestAnimationFrame(birdFall) //makes the function recusrive
-    ctx.clearRect(0,0,innerWidth,innerHeight);
-    booby.update();
-    pipe2[0].update();
-    for(let i = 0; i < pipe1.length; i ++){
-        pipe1[i].update();
-        pipe2[i].update();
-        // setTimeout(pipe1.push(new TopPole(1000)), 1000);
-        console.log(pipe1.length);
-    
-    
-    }
+//pipe
+let genPipes = () => {
+    let newX = 100;
+    for (let i=0; i< 300; i++){
+        let x = innerWidth;
+        pipe1.push(new TopPole(x+newX));
+        pipe2.push(new BottomPole(x+newX));
+        newX+=200;
+        console.log(pipe1[i]);
+    }; 
 
 }
-birdFall();
+genPipes();
 
 
+let movePipes = () =>{
+    for (let i = 0; i < pipe1.length; i++){
+        pipe1[i].update();
+        pipe2[i].update();
+        if (pipe1[i].x < 0){
+            pipe1[i].x = innerWidth;
+            pipe1[i].height = Math.floor(Math.random() * 200) + 100
+        }
+        if (pipe2[i].x < 0){
+            pipe2[i].x = innerWidth;
+            pipe2[i].height = Math.floor(Math.random() * -200)  -100;
+
+        }
+    }
+}
+
+let booby = new Booby();
+
+const animate = () => { 
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    booby.update();
+    movePipes();
+
+}
+setInterval(animate, 20);
 window.addEventListener('keydown', (e) => {
-    booby.lift();
-    console.log(e.keyCode);
+    booby.moveUp();
 });
+
+
+
+
 
 
 
