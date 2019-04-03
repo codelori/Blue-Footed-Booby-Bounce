@@ -6,15 +6,43 @@ canvas.height = window.innerHeight;
 
 let birdy = new Image();
 birdy.src = "images/boob2.png"
+
 let topPipe = new Image();
 topPipe.src = "images/pipeNorth.png";
+
 let bottomPipe = new Image();
 bottomPipe.src = "images/pipeSouth.png";
+
 let pipe1 =[];
 let pipe2 = [];
 
+function Booby (){
+    this.x = 400;
+    this.y = 0;
+    this.gravity = 0.5;
+    this.lift = -3;
+    this.speed = 5;
+    this.width = 100;
+    this.height = 100;
 
-function TopPole(x) {
+    this.draw = () =>{
+        ctx.drawImage(birdy, this.x, this.y, this.width, this.height);
+    }
+    this.update = () => {
+        this.draw();
+        this.y += this.speed
+        if(this.y > 600){
+            this.y = 600;
+        }
+    }
+    this.moveUp = () =>{
+        this.lift -= this.gravity;
+        this.y += this.speed * this.lift;  
+    }
+}
+let booby = new Booby();
+
+function TopPipe(x) {
     this.x = x;
     this.y = 0;
     this.dx = 5;
@@ -25,14 +53,20 @@ function TopPole(x) {
         // ctx.fillStyle = '#5DCCFE';
         // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
+    this.collision = () => {
+        if(booby.x + booby.width >= this.x &&  booby.y + booby.height < this.y + this.height) {
+            console.log(`hit`);
+            return true;
+        }
+    }
     this.update = () => {
         this.x -= this.dx;
         this.draw();
+        this.collision();
     }
-    this.repeat = () => {setInterval(this.update(),500)};
 }
 
-function BottomPole (x){
+function BottomPipe (x){
     this.x = x;
     this.y = 900;
     this.dx = 5;
@@ -49,42 +83,17 @@ function BottomPole (x){
     } 
 }
 
-function Booby (){
-    this.x = 400;
-    this.y = 0;
-    this.gravity = 0.5;
-    this.lift = -3;
-    this.speed = 5;
 
-    this.draw = () =>{
-        ctx.drawImage(birdy, this.x, this.y, 100, 100);
-    }
-
-    this.update = () => {
-        this.draw();
-        this.y += this.speed
-        if(this.y > 600){
-            this.y = 600;
-        }
-    }
-    this.moveUp = () =>{
-        this.lift -= this.gravity;
-        this.y += this.speed * this.lift;  
-        console.log(this.y);
-    }
-}
-
-let genPipes = () => {
+let generatePipes = () => {
     let newX = 100;
     for (let i=0; i< 7; i++){
         let x = innerWidth;
-        pipe1.push(new TopPole(x+newX));
-        pipe2.push(new BottomPole(x+newX));
+        pipe1.push(new TopPipe(x+newX));
+        pipe2.push(new BottomPipe(x+newX));
         newX+=250;
-        console.log(pipe1[i]);
     }; 
 }
-genPipes();
+generatePipes();
 
 let movePipes = () =>{
     for (let i = 0; i < pipe1.length; i++){
@@ -102,8 +111,6 @@ let movePipes = () =>{
     }
 }
 
-let booby = new Booby();
-
 const animate = () => { 
     ctx.clearRect(0,0,innerWidth,innerHeight);
     movePipes();
@@ -111,8 +118,11 @@ const animate = () => {
 
 }
 setInterval(animate, 20);
-window.addEventListener('keypress', (e) => {
-    booby.moveUp();
+window.addEventListener('keydown', (e) => {
+    if (e.keyCode === 32){
+        booby.moveUp();
+    }
+    
 });
 
 
