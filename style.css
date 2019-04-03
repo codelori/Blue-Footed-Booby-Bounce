@@ -4,10 +4,22 @@
 #canvas{
     background: transparent;
     position: absolute;
+    z-index : 0;
 }
 .bg{
     position: absolute;
     width: 100vw;
     height: 100vh;
     z-index: -1;
+}
+.score{
+
+    position: absolute;
+    z-index: 2;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: white;
+    text-shadow: 4px 4px black;
 }

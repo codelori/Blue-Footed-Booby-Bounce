@@ -16,14 +16,19 @@ bottomPipe.src = "images/pipeSouth.png";
 let pipe1 =[];
 let pipe2 = [];
 
+let score = 0;
+let scoreElement = document.querySelector('.score');
+let scoreText = scoreElement.innerHTML;
+
+
 function Booby (){
     this.x = 400;
     this.y = 0;
     this.gravity = 0.5;
     this.lift = -3;
-    this.speed = 5;
-    this.width = 100;
-    this.height = 100;
+    this.speed = 8;
+    this.width = 80;
+    this.height = 80;
 
     this.draw = () =>{
         ctx.drawImage(birdy, this.x, this.y, this.width, this.height);
@@ -31,12 +36,13 @@ function Booby (){
     this.update = () => {
         this.draw();
         this.y += this.speed
-        if(this.y > 600){
-            this.y = 600;
+        if(this.y > 650){
+            this.y = 650;
         }
     }
     this.moveUp = () =>{
-        this.lift -= this.gravity;
+    this.lift -= this.gravity;
+
         this.y += this.speed * this.lift;  
     }
 }
@@ -54,14 +60,20 @@ function TopPipe(x) {
         // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     this.collision = () => {
-        if(booby.x + booby.width >= this.x &&  booby.y + booby.height < this.y + this.height) {
-            console.log(`hit`);
-            return true;
+        if(booby.x + booby.width - 10 >= this.x && booby.x + 10 <= this.x + this.width){
+            if(booby.y <= this.y + this.height){
+                clearInterval(playGame);
+                return true;
+            }
         }
     }
+    // this.score = () =>{
+    //     if(booby.x + booby.width )
+
+    // }
     this.update = () => {
         this.x -= this.dx;
-        this.draw();
+        this.draw(); 
         this.collision();
     }
 }
@@ -74,13 +86,20 @@ function BottomPipe (x){
     this.height = Math.floor(Math.random() * -200)  -150;
     this.draw = () => {
         ctx.drawImage(bottomPipe, this.x, this.y, this.width, this.height)
-        // ctx.fillStyle = '#5DCCFE';
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.collision = () => {
+        if(booby.x + booby.width >= this.x && booby.x <= this.x + this.width){
+            if(booby.y + booby.height >= this.y + this.height){
+                clearInterval(playGame);
+                return true;
+            }
+        }
     }
     this.update = () => {
         this.x -= this.dx;
         this.draw();
-    } 
+        this.collision();
+    }
 }
 
 
@@ -106,23 +125,21 @@ let movePipes = () =>{
         if (pipe2[i].x < -100){
             pipe2[i].x = innerWidth;
             pipe2[i].height = Math.floor(Math.random() * -200)  -150;
-
         }
     }
 }
 
-const animate = () => { 
+const game = () => { 
     ctx.clearRect(0,0,innerWidth,innerHeight);
     movePipes();
     booby.update();
-
 }
-setInterval(animate, 20);
+let playGame = setInterval(game, 20);
+
 window.addEventListener('keydown', (e) => {
     if (e.keyCode === 32){
         booby.moveUp();
     }
-    
 });
 
 
