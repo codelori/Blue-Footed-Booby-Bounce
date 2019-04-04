@@ -107,18 +107,58 @@
         transform: rotate(-15deg);
     }
 }
-
 .game-author{
     margin-top: 20px;
     font-family: 'Press Start 2P', cursive;
     font-size: 20px;
-    /* font-style: bold; */
-    /* color:rgb(133, 91, 15);
-    text-shadow: 2px 2px black; */
 }
 .background2{
     display: none;
     background-color: rgba(0, 0, 0, 0.8);
-    padding-top: 150px;
+}
+.container2{
+    margin-top: 150px;
+}
+.end-author{
+    color: white;
+}
+.booby-dies{
+    animation: death-twirl 1s;
+}
+@keyframes death-twirl{
+    0%{
+        transform: rotate(720deg);
+    }
+    100%{
 
+    }
+}
+.game-over{
+    animation: change-color2 1s infinite;
+}
+@keyframes change-color2{
+    0%{
+        color: white;
+    }
+    50%{
+        color:  rgb(180, 38, 216);
+    }
+    100%{
+        color: white;
+    }
+}
+.dead-bird{
+    animation: fall-over 1s;
+}
+@keyframes fall-over{
+    0%{
+        transform: rotate(0deg);
+
+    }
+    /* 50%{
+        transform: rotate(15deg);
+    } */
+    100%{
+        transform: rotate(100deg);
+    }
 }

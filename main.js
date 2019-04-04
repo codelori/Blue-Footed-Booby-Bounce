@@ -18,23 +18,26 @@ let pipe2 = [];
 
 let score = 0;
 let scoreElement = document.querySelector('.score');
-let scoreText = scoreElement.innerHTML;
+let finalScore = document.querySelector('.score2');
 
 let gameButton = document.querySelector(".start-game");
 let startPage = document.querySelector(".background1");
 let gameOver = document.querySelector('.background2');
 let playAgain = document.querySelector('.replay');
 
+let keepScore = () => {
+    score += 1;
+    scoreElement.innerHTML = `Score: ${score}`;
+}
 
 function Booby (){
     this.x = 400;
     this.y = 0;
     this.gravity = 0.5;
-    this.lift = -1;
-    this.speed = 8;
+    this.friction = 0.99;
+    this.speed = 4;
     this.width = 80;
     this.height = 80;
-
     this.draw = () =>{
         ctx.drawImage(birdy, this.x, this.y, this.width, this.height);
     }
@@ -45,9 +48,16 @@ function Booby (){
             this.y = 670;
         }
     }
-    this.moveUp = () =>{
-        this.lift -= this.gravity;
-        this.y += this.speed * this.lift;  
+    this.move = (e) =>{
+        if(e.type === "keydown"){
+            this.y -= this.speed * 10;
+            this.speed *= this.friction;
+        }
+        
+        if(e.type ==="keyup"){
+            this.speed = 5;
+            this.friction = 0.99;
+        }
     }
 }
 let booby = new Booby();
@@ -57,7 +67,7 @@ function TopPipe(x) {
     this.y = 0;
     this.dx = 5;
     this.width = 70;
-    this.height = Math.floor(Math.random() * 200) + 150;
+    this.height = Math.floor(Math.random() * 200) + 175;
     this.draw = () => {
         ctx.drawImage(topPipe, this.x, this.y, this.width, this.height);
     }
@@ -65,7 +75,8 @@ function TopPipe(x) {
         if(booby.x + booby.width - 10 >= this.x && booby.x + 10 <= this.x + this.width){
             if(booby.y <= this.y + this.height){
                 clearInterval(playGame);
-                gameOver.style.display = 'block';
+                finalScore.innerHTML = `Final Score: ${score}`
+                setTimeout(()=>{gameOver.style.display = 'block'}, 1000);
                 scoreElement.style.display = "none";
                 return true;
             }
@@ -77,13 +88,12 @@ function TopPipe(x) {
         this.collision();
     }
 }
-
 function BottomPipe (x){
     this.x = x;
     this.y = 900;
     this.dx = 5;
     this.width = 70;
-    this.height = Math.floor(Math.random() * -200)  -150;
+    this.height = Math.floor(Math.random() * -200)  -175;
     this.draw = () => {
         ctx.drawImage(bottomPipe, this.x, this.y, this.width, this.height)
     }
@@ -91,7 +101,8 @@ function BottomPipe (x){
         if(booby.x + booby.width >= this.x && booby.x <= this.x + this.width){
             if(booby.y + booby.height >= this.y + this.height){
                 clearInterval(playGame);
-                gameOver.style.display = 'block';
+                setTimeout(()=>{gameOver.style.display = 'block'}, 1000);
+                finalScore.innerHTML = `Final Score: ${score}`
                 scoreElement.style.display = "none";
                 return true;
             }
@@ -103,7 +114,6 @@ function BottomPipe (x){
         this.collision();
     }
 }
-
 
 let generatePipes = () => {
     let newX = 100;
@@ -122,11 +132,11 @@ let movePipes = () =>{
         pipe2[i].update();
         if (pipe1[i].x < -100){
             pipe1[i].x = innerWidth;
-            pipe1[i].height = Math.floor(Math.random() * 200) + 150
+            pipe1[i].height = Math.floor(Math.random() * 200) + 175
         }
         if (pipe2[i].x < -100){
             pipe2[i].x = innerWidth;
-            pipe2[i].height = Math.floor(Math.random() * -200)  -150;
+            pipe2[i].height = Math.floor(Math.random() * -200)  -175;
         }
     }
 }
@@ -134,25 +144,22 @@ const game = () => {
     ctx.clearRect(0,0,innerWidth,innerHeight);
     movePipes();
     booby.update();
+    keepScore();
+
 }
- let playGame; 
+let playGame; 
  
- let playGameHolder = () =>{
+let playGameHolder = () =>{
+    playGame = setInterval(game, 20);
+};
 
-     playGame = setInterval(game, 20);
- };
-
-window.addEventListener('keydown', (e) => {
-    if (e.keyCode === 32){
-        booby.moveUp();
-    }
-});
+window.addEventListener('keydown', booby.move);
+window.addEventListener('keyup', booby.move);
 
 gameButton.addEventListener('click', ()=>{
     playGameHolder();
     startPage.style.display = "none";
     scoreElement.style.display = "block";
-
 });
 
 let resetPipes = () =>{
@@ -166,6 +173,7 @@ playAgain.addEventListener('click', ()=>{
     resetPipes();
     generatePipes();
     playGameHolder();
+    score = 0;
     gameOver.style.display = "none";
     scoreElement.style.display = "block";
 
