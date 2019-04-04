@@ -26,7 +26,6 @@
 }
 .modal-background{
     position: absolute;
-    /* background-color: rgba(0, 0, 0, 0.8); */
     width: 100vw;
     height: 100vh;
     z-index: 3;
@@ -116,4 +115,10 @@
     /* font-style: bold; */
     /* color:rgb(133, 91, 15);
     text-shadow: 2px 2px black; */
+}
+.background2{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 150px;
+
 }

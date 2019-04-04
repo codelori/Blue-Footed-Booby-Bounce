@@ -20,6 +20,11 @@ let score = 0;
 let scoreElement = document.querySelector('.score');
 let scoreText = scoreElement.innerHTML;
 
+let gameButton = document.querySelector(".start-game");
+let startPage = document.querySelector(".background1");
+let gameOver = document.querySelector('.background2');
+let playAgain = document.querySelector('.replay');
+
 
 function Booby (){
     this.x = 400;
@@ -60,6 +65,8 @@ function TopPipe(x) {
         if(booby.x + booby.width - 10 >= this.x && booby.x + 10 <= this.x + this.width){
             if(booby.y <= this.y + this.height){
                 clearInterval(playGame);
+                gameOver.style.display = 'block';
+                scoreElement.style.display = "none";
                 return true;
             }
         }
@@ -84,6 +91,8 @@ function BottomPipe (x){
         if(booby.x + booby.width >= this.x && booby.x <= this.x + this.width){
             if(booby.y + booby.height >= this.y + this.height){
                 clearInterval(playGame);
+                gameOver.style.display = 'block';
+                scoreElement.style.display = "none";
                 return true;
             }
         }
@@ -139,11 +148,26 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-let gameButton = document.querySelector(".start-game");
-let startPage = document.querySelector(".modal-background");
 gameButton.addEventListener('click', ()=>{
     playGameHolder();
     startPage.style.display = "none";
+    scoreElement.style.display = "block";
+
+});
+
+let resetPipes = () =>{
+    pipe1 = [];
+    pipe2 = [];
+}
+
+playAgain.addEventListener('click', ()=>{
+    booby.x = 400;
+    booby.y = 0;
+    resetPipes();
+    generatePipes();
+    playGameHolder();
+    gameOver.style.display = "none";
+    scoreElement.style.display = "block";
 
 });
 
