@@ -22,4 +22,98 @@
     margin-left: 20px;
     color: white;
     text-shadow: 4px 4px black;
+    display:none;
+}
+.modal-background{
+    position: absolute;
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-container{
+    width: 900px;
+    height: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 40px;
+    color:rgb(142, 229, 245);
+    text-shadow: 4px 4px black;
+    margin-top: 40px;
+
+}
+.main-title{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 60px;
+    color: white;
+    text-shadow: 8px 8px black;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 10px;
+    animation: change-color 1s infinite;
+}
+@keyframes change-color{
+    0%{
+        color: white;
+    }
+    50%{
+        color:  rgb(224, 149, 10);
+    }
+    100%{
+        color: white;
+    }
+}
+.start-game{
+    margin-top: 40px;
+    width: 250px;
+    height: 40px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    border: solid black 3px;
+    background: rgb(224, 149, 10)
+}
+.start-game:hover{
+    animation: button-scale 1s infinite;
+}
+@keyframes button-scale{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.game-logo{
+    /* animation: bird-dance 1s infinite; */
+    margin-top: 50px;
+}
+@keyframes bird-dance{
+    0%{
+        transform: rotate(-15deg);
+    }
+    50%{
+        transform: rotate(15deg);
+    }
+    100%{
+        transform: rotate(-15deg);
+    }
+}
+
+.game-author{
+    margin-top: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    /* font-style: bold; */
+    /* color:rgb(133, 91, 15);
+    text-shadow: 2px 2px black; */
 }

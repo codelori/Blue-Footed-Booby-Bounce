@@ -25,7 +25,7 @@ function Booby (){
     this.x = 400;
     this.y = 0;
     this.gravity = 0.5;
-    this.lift = -3;
+    this.lift = -1;
     this.speed = 8;
     this.width = 80;
     this.height = 80;
@@ -36,13 +36,12 @@ function Booby (){
     this.update = () => {
         this.draw();
         this.y += this.speed
-        if(this.y > 650){
-            this.y = 650;
+        if(this.y > 670){
+            this.y = 670;
         }
     }
     this.moveUp = () =>{
-    this.lift -= this.gravity;
-
+        this.lift -= this.gravity;
         this.y += this.speed * this.lift;  
     }
 }
@@ -56,8 +55,6 @@ function TopPipe(x) {
     this.height = Math.floor(Math.random() * 200) + 150;
     this.draw = () => {
         ctx.drawImage(topPipe, this.x, this.y, this.width, this.height);
-        // ctx.fillStyle = '#5DCCFE';
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     this.collision = () => {
         if(booby.x + booby.width - 10 >= this.x && booby.x + 10 <= this.x + this.width){
@@ -67,10 +64,6 @@ function TopPipe(x) {
             }
         }
     }
-    // this.score = () =>{
-    //     if(booby.x + booby.width )
-
-    // }
     this.update = () => {
         this.x -= this.dx;
         this.draw(); 
@@ -128,19 +121,32 @@ let movePipes = () =>{
         }
     }
 }
-
 const game = () => { 
     ctx.clearRect(0,0,innerWidth,innerHeight);
     movePipes();
     booby.update();
 }
-let playGame = setInterval(game, 20);
+ let playGame; 
+ 
+ let playGameHolder = () =>{
+
+     playGame = setInterval(game, 20);
+ };
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode === 32){
         booby.moveUp();
     }
 });
+
+let gameButton = document.querySelector(".start-game");
+let startPage = document.querySelector(".modal-background");
+gameButton.addEventListener('click', ()=>{
+    playGameHolder();
+    startPage.style.display = "none";
+
+});
+
 
 
 
