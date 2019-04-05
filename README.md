@@ -1,6 +1,4 @@
 # Blue-Footed-Booby-Bounce
-https://lorianahines.github.io/Blue-Footed-Booby-Bounce/
-bouncyboob.surge.sh
 
 ## Name of the Game: Blue Footed Booby Bounce 
 
@@ -36,3 +34,9 @@ Playing this game will be even more fun when there are multiple challenges added
 Players will be able to add their name to keep track of their score and a leader board will show who has the highest points
 ##### Choose your own Booby: 
 Players can choose their own Booby - avatar.
+
+## Deployment:
+This project is available at: [https://lorianahines.github.io/Blue-Footed-Booby-Bounce/](https://bouncyboob.surge.sh/)
+
+Also available at: [https://bouncyboob.surge.sh/](https://bouncyboob.surge.sh/)
+
