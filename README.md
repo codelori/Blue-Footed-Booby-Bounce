@@ -27,7 +27,7 @@ https://lorianahines.github.io/Blue-Footed-Booby-Bounce/
   4. Next, I white-boarded some diagrams to visualize the conditions necessary for collision and wrote pseudo code that I eventually turned into real code.
   5. Finally, I added some instructions and styling to make the game come together. Voila!
   
-#### Upcoming Features:
+## Upcoming Features:
 
 ##### Adding multiple levels:
 Playing this game will be even more fun when there are multiple challenges added. The next challenge will be increasing the number of pipes after the player lasts a certain amount of time playing.  
