@@ -33,7 +33,6 @@ let keepScore = () => {
 function Booby (){
     this.x = 400;
     this.y = 0;
-    this.gravity = 0.5;
     this.friction = 0.99;
     this.speed = 4;
     this.width = 80;
@@ -53,7 +52,6 @@ function Booby (){
             this.y -= this.speed * 10;
             this.speed *= this.friction;
         }
-        
         if(e.type ==="keyup"){
             this.speed = 5;
             this.friction = 0.99;
@@ -73,12 +71,12 @@ function TopPipe(x) {
     }
     this.collision = () => {
         if(booby.x + booby.width - 10 >= this.x && booby.x + 10 <= this.x + this.width){
-            if(booby.y <= this.y + this.height){
+            if(booby.y +10 <= this.y + this.height){
                 clearInterval(playGame);
+                booby.className = 'bird-death-spin';
                 finalScore.innerHTML = `Final Score: ${score}`
-                setTimeout(()=>{gameOver.style.display = 'block'}, 1000);
+                gameOver.style.display = 'block';
                 scoreElement.style.display = "none";
-                return true;
             }
         }
     }
@@ -98,13 +96,12 @@ function BottomPipe (x){
         ctx.drawImage(bottomPipe, this.x, this.y, this.width, this.height)
     }
     this.collision = () => {
-        if(booby.x + booby.width >= this.x && booby.x <= this.x + this.width){
-            if(booby.y + booby.height >= this.y + this.height){
+        if(booby.x + booby.width -10 >= this.x && booby.x + 10 <= this.x + this.width){
+            if(booby.y + booby.height -10 >= this.y + this.height){
                 clearInterval(playGame);
-                setTimeout(()=>{gameOver.style.display = 'block'}, 1000);
+                gameOver.style.display = 'block';
                 finalScore.innerHTML = `Final Score: ${score}`
                 scoreElement.style.display = "none";
-                return true;
             }
         }
     }
@@ -132,11 +129,11 @@ let movePipes = () =>{
         pipe2[i].update();
         if (pipe1[i].x < -100){
             pipe1[i].x = innerWidth;
-            pipe1[i].height = Math.floor(Math.random() * 200) + 175
+            pipe1[i].height = Math.floor(Math.random() * 225) + 175
         }
         if (pipe2[i].x < -100){
             pipe2[i].x = innerWidth;
-            pipe2[i].height = Math.floor(Math.random() * -200)  -175;
+            pipe2[i].height = Math.floor(Math.random() * -225)  -175;
         }
     }
 }
@@ -178,6 +175,25 @@ playAgain.addEventListener('click', ()=>{
     scoreElement.style.display = "block";
 
 });
+
+let infoButton = document.querySelector('.info');
+let infoModal = document.querySelector('.background3');
+infoButton.addEventListener('click', ()=>{
+    infoModal.style.display = "block";
+})
+
+let closeButton = document.querySelector('.close');
+closeButton.addEventListener('click', ()=>{
+    infoModal.style.display = "none";
+})
+
+let secondPlay = document.querySelector('.play');
+secondPlay.addEventListener('click', ()=>{
+    playGameHolder();
+    startPage.style.display = "none";
+    infoModal.style.display = "none";
+    scoreElement.style.display = "block";
+})
 
 
 

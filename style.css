@@ -12,8 +12,8 @@
     height: 100vh;
     z-index: -1;
 }
-.score{
 
+.score{
     position: absolute;
     z-index: 2;
     font-family: 'Press Start 2P', cursive;
@@ -24,6 +24,7 @@
     text-shadow: 4px 4px black;
     display:none;
 }
+
 .modal-background{
     position: absolute;
     width: 100vw;
@@ -33,6 +34,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .modal-container{
     width: 900px;
     height: 600px;
@@ -40,6 +42,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .title{
     font-family: 'Press Start 2P', cursive;
     font-size: 40px;
@@ -48,6 +51,7 @@
     margin-top: 40px;
 
 }
+
 .main-title{
     font-family: 'Press Start 2P', cursive;
     font-size: 60px;
@@ -58,6 +62,7 @@
     letter-spacing: 10px;
     animation: change-color 1s infinite;
 }
+
 @keyframes change-color{
     0%{
         color: white;
@@ -69,6 +74,7 @@
         color: white;
     }
 }
+
 .start-game{
     margin-top: 40px;
     width: 250px;
@@ -78,9 +84,11 @@
     border: solid black 3px;
     background: rgb(224, 149, 10)
 }
+
 .start-game:hover{
     animation: button-scale 1s infinite;
 }
+
 @keyframes button-scale{
     0%{
         transform: scale(1);
@@ -92,50 +100,47 @@
         transform: scale(1);
     }
 }
+
 .game-logo{
-    /* animation: bird-dance 1s infinite; */
+    animation: bird-dance 1.5s linear infinite;
     margin-top: 50px;
 }
+
 @keyframes bird-dance{
     0%{
-        transform: rotate(-15deg);
+        transform: translateX(100px)
     }
     50%{
-        transform: rotate(15deg);
+        transform: translateX(-100px)
     }
     100%{
-        transform: rotate(-15deg);
+        transform: translateX(100px);
     }
 }
+
 .game-author{
     margin-top: 20px;
     font-family: 'Press Start 2P', cursive;
     font-size: 20px;
 }
+
 .background2{
     display: none;
     background-color: rgba(0, 0, 0, 0.8);
 }
+
 .container2{
-    margin-top: 150px;
+    margin-top: 130px;
 }
+
 .end-author{
     color: white;
 }
-.booby-dies{
-    animation: death-twirl 1s;
-}
-@keyframes death-twirl{
-    0%{
-        transform: rotate(720deg);
-    }
-    100%{
 
-    }
-}
 .game-over{
     animation: change-color2 1s infinite;
 }
+
 @keyframes change-color2{
     0%{
         color: white;
@@ -147,18 +152,67 @@
         color: white;
     }
 }
-.dead-bird{
-    animation: fall-over 1s;
-}
-@keyframes fall-over{
-    0%{
-        transform: rotate(0deg);
+  
+.container3{
+    background-color: white;
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 15%;
+    border: solid black;
+    height: 500px;
+    padding-top: 40px;
+    margin-top: 120px;
 
-    }
-    /* 50%{
-        transform: rotate(15deg);
-    } */
-    100%{
-        transform: rotate(100deg);
-    }
+}
+
+li{
+    list-style: none;
+    margin-top: 30px;
+    font-size: 20px;
+    
+}
+
+ul{
+    margin-top: 20px;
+}
+
+.instructions{
+    color:rgb(118, 188, 201);
+
+}
+
+.close{
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 30px;
+    background: none;
+    border: none;
+    margin-left: 800px;
+
+}
+
+.play{
+    margin-top: 60px;
+}
+
+.background3{
+    background-color: rgba(0, 0, 0, 0.8);
+    display:none;
+}
+
+.info{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    background: black;
+    margin-top: 10px;
+    padding: 5px;
+    border: solid black 2px;
+}
+
+.info:hover{
+    background: rgb(118, 188, 201);
+    color: black;
+}
+
+.halo{
+    width: 170px;
 }
