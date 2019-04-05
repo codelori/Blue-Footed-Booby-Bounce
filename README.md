@@ -29,9 +29,9 @@ https://lorianahines.github.io/Blue-Footed-Booby-Bounce/
   
 #### Upcoming Features:
 
-##### 1. Adding multiple levels:
-playing this game will be even more fun when there are multiple challenges added. The next challenge will be increasing the number of pipes after the player lasts a certain amount of time playing.  
-##### 2. Leader scoreboard: 
-players will be able to add their name to keep track of their score and a leader board will show who has the highest points
-##### 3. Choose your own Booby: 
-players can choose their own Booby - avatar.
+##### Adding multiple levels:
+Playing this game will be even more fun when there are multiple challenges added. The next challenge will be increasing the number of pipes after the player lasts a certain amount of time playing.  
+##### Leader scoreboard: 
+Players will be able to add their name to keep track of their score and a leader board will show who has the highest points
+##### Choose your own Booby: 
+Players can choose their own Booby - avatar.
