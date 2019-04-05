@@ -1,7 +1,7 @@
 # Blue-Footed-Booby-Bounce
 https://lorianahines.github.io/Blue-Footed-Booby-Bounce/
 
-## Name of the Game: Booby Bounce 
+## Name of the Game: Blue Footed Booby Bounce 
 
 #### Objective: 
   1. Gain as many points as you can by bouncing the blue-footed-booby through the pillars without touching them! 
