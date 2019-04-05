@@ -28,6 +28,7 @@ https://lorianahines.github.io/Blue-Footed-Booby-Bounce/
   5. Finally, I added some instructions and styling to make the game come together. Voila!
   
 #### Upcoming Features:
+
 ##### 1. Adding multiple levels:
 playing this game will be even more fun when there are multiple challenges added. The next challenge will be increasing the number of pipes after the player lasts a certain amount of time playing.  
 ##### 2. Leader scoreboard: 
