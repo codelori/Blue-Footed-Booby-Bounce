@@ -1,0 +1,218 @@
+*{
+    margin: 0 auto;
+}
+#canvas{
+    background: transparent;
+    position: absolute;
+    z-index : 0;
+}
+.bg{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.score{
+    position: absolute;
+    z-index: 2;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: white;
+    text-shadow: 4px 4px black;
+    display:none;
+}
+
+.modal-background{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container{
+    width: 900px;
+    height: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 40px;
+    color:rgb(142, 229, 245);
+    text-shadow: 4px 4px black;
+    margin-top: 40px;
+
+}
+
+.main-title{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 60px;
+    color: white;
+    text-shadow: 8px 8px black;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 10px;
+    animation: change-color 1s infinite;
+}
+
+@keyframes change-color{
+    0%{
+        color: white;
+    }
+    50%{
+        color:  rgb(224, 149, 10);
+    }
+    100%{
+        color: white;
+    }
+}
+
+.start-game{
+    margin-top: 40px;
+    width: 250px;
+    height: 40px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    border: solid black 3px;
+    background: rgb(224, 149, 10)
+}
+
+.start-game:hover{
+    animation: button-scale 1s infinite;
+}
+
+@keyframes button-scale{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.game-logo{
+    animation: bird-dance 1.5s linear infinite;
+    margin-top: 50px;
+}
+
+@keyframes bird-dance{
+    0%{
+        transform: translateX(100px)
+    }
+    50%{
+        transform: translateX(-100px)
+    }
+    100%{
+        transform: translateX(100px);
+    }
+}
+
+.game-author{
+    margin-top: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+}
+
+.background2{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.container2{
+    margin-top: 130px;
+}
+
+.end-author{
+    color: white;
+}
+
+.game-over{
+    animation: change-color2 1s infinite;
+}
+
+@keyframes change-color2{
+    0%{
+        color: white;
+    }
+    50%{
+        color:  rgb(180, 38, 216);
+    }
+    100%{
+        color: white;
+    }
+}
+  
+.container3{
+    background-color: white;
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 15%;
+    border: solid black;
+    height: 500px;
+    padding-top: 40px;
+    margin-top: 120px;
+
+}
+
+li{
+    list-style: none;
+    margin-top: 30px;
+    font-size: 20px;
+    
+}
+
+ul{
+    margin-top: 20px;
+}
+
+.instructions{
+    color:rgb(118, 188, 201);
+
+}
+
+.close{
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 30px;
+    background: none;
+    border: none;
+    margin-left: 800px;
+
+}
+
+.play{
+    margin-top: 60px;
+}
+
+.background3{
+    background-color: rgba(0, 0, 0, 0.8);
+    display:none;
+}
+
+.info{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    background: black;
+    margin-top: 10px;
+    padding: 5px;
+    border: solid black 2px;
+}
+
+.info:hover{
+    background: rgb(118, 188, 201);
+    color: black;
+}
+
+.halo{
+    width: 170px;
+}
